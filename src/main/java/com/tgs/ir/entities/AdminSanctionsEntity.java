@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -55,8 +56,7 @@ public class AdminSanctionsEntity {
 	@Column(name = "hoa_id")
 	private Integer hoaId ;
 	
-	@Column(name = "approved_by_id")
-	private Integer approvedById ;
+
 	
 	@Column(name = "approved_by_name")
 	private String approvedByName ;
@@ -129,12 +129,20 @@ public class AdminSanctionsEntity {
 	
 	
 	  @OneToMany(mappedBy = "adminSanction", fetch = FetchType.LAZY)
-	  private
-	  List<TechnicalSanctionEntity> technEntries;
+	  private List<TechnicalSanctionEntity> technEntries;
+	  
+		/*
+		 * @JoinColumn(name = "approved_by_id") private WorkApprovedAuthorityMst
+		 * workApprovedAuthorityMst ;
+		 */
+		
+		
+		
 		/*
 		 * @OneToMany(mappedBy = "adminSanctionAssign", fetch = FetchType.LAZY) private
 		 * List<AdminAssignWorksEntity> adminAssignWorksEntities ;
 		 */
+		 
 	 
 	 
 	 

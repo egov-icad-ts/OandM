@@ -31,7 +31,7 @@ public class OAndMController  {
 	    }
 	 @CrossOrigin(origins = "http://localhost:3000")
 	 @GetMapping("/adminSanctionsByworkId")
-	    public ResponseEntity<BaseResponse<HttpStatus,  AdminSanctionsModel>> getAdminSanctionsByworkId(Integer workId) {
+	    public ResponseEntity<BaseResponse<HttpStatus,  AdminSanctionsModel>> getAdminSanctionsByworkId(@RequestParam Integer workId) {
 	        BaseResponse<HttpStatus, AdminSanctionsModel> response = adminSanctionService.findbyWorkId(workId);
 	        return new ResponseEntity<>(response, response.getStatus());
 	    }

@@ -19,6 +19,7 @@ import com.tgs.ir.dto.AdminSanctionsModel;
 import com.tgs.ir.dto.TechnicalSanctionsModel;
 import com.tgs.ir.entities.AdminSanctionsEntity;
 import com.tgs.ir.entities.TechnicalSanctionEntity;
+import com.tgs.ir.entities.WorkApprovedAuthorityMst;
 import com.tgs.ir.repositories.AdminSanctionRepo;
 
 @Service
@@ -48,26 +49,34 @@ public class AdminSanctionService extends BaseServiceImpl<AdminSanctionsEntity, 
 	}
 	
 public BaseResponse<HttpStatus, AdminSanctionsModel> findbyWorkId(Integer workId){
-		
-		
 		logger.debug(appConstant.getValue(AppConstant.GET_SERVICE_STARTED));
 		BaseResponse<HttpStatus, AdminSanctionsModel> responseJson = new BaseResponse<>();
 		AdminSanctionsEntity entities = adminSanctionRepo.findByworkIdAndIsLatestTrueAndDeleteFlagFalseAndTechnEntriesIsLatestTrueAndTechnEntriesDeleteFlagFalse(workId) ;
 			AdminSanctionsModel model=new AdminSanctionsModel();
 			model.setWorkId(entities.getWorkId());
 			model.setAdminSanctionAmt(entities.getAdminSanctionAmt());
+	
 			model.setApprovedByName(entities.getApprovedByName());
 			model.setReferenceNumber(entities.getReferenceNumber());
 			model.setReferenceDate(entities.getReferenceDate());
+			
 			List<TechnicalSanctionsModel> techSanctionModels=new ArrayList<>();
 			for(TechnicalSanctionEntity  tech: entities.getTechnEntries()) {
 				
 				TechnicalSanctionsModel techmodel=new TechnicalSanctionsModel();
 				techmodel.setTsApprovedAmount(tech.getTsApprovedAmount());
 				techmodel.setTsApprovedDate(tech.getTsApprovedDate());
+				techmodel.setTsDate(tech.getTsApprovedDate().toString());
 				techmodel.setTsNumber(tech.getTsNumber());
 				techSanctionModels.add(techmodel);
 			}
+			
+			
+			
+		
+			
+			
+			
 		model.setTechlist(techSanctionModels);
 		
 	//	AdminSanctionsModel models = mapper.mapEntityToModel(entities);

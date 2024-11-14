@@ -16,10 +16,9 @@ public class TechnicalSanctionsModel {
 	 private Date  tsApprovedDate;
 	 private boolean  isLatest;
 	 private boolean  deleteFlag;
-	 private String  updatedBy;
-	 private String  tsFileUrl;
- private String  tsEstFileUrl;
-	 private Integer  tsType;
+	 
+	 private String tsDate;
+
 
 
 }

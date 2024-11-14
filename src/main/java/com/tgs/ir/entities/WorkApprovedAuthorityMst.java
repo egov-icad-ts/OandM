@@ -2,7 +2,7 @@ package com.tgs.ir.entities;
 
 import jakarta.persistence.Column;
 
-public class O_m_work_approved_authority_mst {
+public class WorkApprovedAuthorityMst {
 @Column(name="authority_name")
  
  private String  authorityName;
