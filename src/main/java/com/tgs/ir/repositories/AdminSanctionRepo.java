@@ -21,4 +21,6 @@ public AdminSanctionsEntity findByworkIdAndIsLatestTrueAndDeleteFlagFalseAndTech
 public List<AdminSanctionsEntity> findByunitIdAndFinancialYearAndIsLatestAndDeleteFlagAndDivisionIdAndSubDivisionIdAndIsAssignedAndTechnEntriesIsLatestAndTechnEntriesDeleteFlag
 (Integer unit,Integer finyear,Boolean isLatest,Boolean deleteFlag,Integer DivisionId,Integer SubDivisionId,Boolean isAssigned,Boolean tech_is_latest,Boolean deleteflag);
 
+
+
 }

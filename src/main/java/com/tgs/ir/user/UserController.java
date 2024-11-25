@@ -24,5 +24,7 @@ public class UserController extends BaseController<UserEntity, UserModel,Integer
     public ResponseEntity<BaseResponse<HttpStatus, UserModel>> getById(@PathVariable Integer id) {
         BaseResponse<HttpStatus, UserModel> response = userService.get(id);
         return new ResponseEntity<>(response, response.getStatus());
+        
+      
     }
 }

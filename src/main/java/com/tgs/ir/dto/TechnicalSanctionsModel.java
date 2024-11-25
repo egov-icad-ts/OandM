@@ -1,6 +1,10 @@
 package com.tgs.ir.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -19,6 +23,15 @@ public class TechnicalSanctionsModel {
 	 
 	 private String tsDate;
 
+	 private String  tsEstFileUrl;
+	 private String  tsFileUrl;
+	 
+		private MultipartFile techSancUrl;
+		private MultipartFile techEstimateUrl;
 
+private String sancFileType;
+private String estFileType;
+
+private List<TechnicalSanctionsModel> techList=new ArrayList<>();
 
 }

@@ -27,5 +27,10 @@ public class UserEntity extends BaseEntity<Integer> {
 
     @Column(name = "NAME")
     private String name;
+    
+//    
+//    @Column(name = "created_by")
+//    private Integer created;
+//    
 
 }

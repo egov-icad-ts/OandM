@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +18,7 @@ import com.tgs.ir.dto.AdminSanctionsModel;
 import com.tgs.ir.dto.TechnicalSanctionsModel;
 import com.tgs.ir.entities.AdminSanctionsEntity;
 import com.tgs.ir.entities.TechnicalSanctionEntity;
-import com.tgs.ir.entities.WorkApprovedAuthorityMst;
+
 import com.tgs.ir.repositories.AdminSanctionRepo;
 
 @Service
@@ -42,6 +41,7 @@ public class AdminSanctionService extends BaseServiceImpl<AdminSanctionsEntity, 
 		logger.debug(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 		responseJson.setSuccess(true);
 		responseJson.setData(models);
+		
 		responseJson.setMessage(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 		responseJson.setStatus(HttpStatus.OK);
 		return responseJson;
@@ -70,21 +70,16 @@ public BaseResponse<HttpStatus, AdminSanctionsModel> findbyWorkId(Integer workId
 				techmodel.setTsNumber(tech.getTsNumber());
 				techSanctionModels.add(techmodel);
 			}
-			
-			
-			
-		
-			
-			
-			
 		model.setTechlist(techSanctionModels);
 		
-	//	AdminSanctionsModel models = mapper.mapEntityToModel(entities);
+//	AdminSanctionsModel model = mapper.mapEntityToModel(entities);
 		logger.debug(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 		responseJson.setSuccess(true);
 		responseJson.setData(model);
+	
 		responseJson.setMessage(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 		responseJson.setStatus(HttpStatus.OK);
+		
 		return responseJson;
 		
 	}
@@ -108,12 +103,15 @@ public BaseResponse<HttpStatus, AdminSanctionsModel> findByunitIdAndFinancialYea
 		}
 	model.setTechlist(techSanctionModels);
 	
-//	AdminSanctionsModel models = mapper.mapEntityToModel(entities);
+//	AdminSanctionsModel model = mapper.mapEntityToModel(entities);
+	
 	logger.debug(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 	responseJson.setSuccess(true);
 	responseJson.setData(model);
 	responseJson.setMessage(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 	responseJson.setStatus(HttpStatus.OK);
+	System.out.println("model in service"+model);
+	System.out.println("responseJson in service"+responseJson.toString());
 	return responseJson;
 	
 }
@@ -136,6 +134,7 @@ public BaseResponse<HttpStatus, List<AdminSanctionsModel>>  getAdminSanctionForD
 	responseJson.setData(adminmodels);
 	responseJson.setMessage(appConstant.getValue(AppConstant.GET_SERVICE_SUCCESS));
 	responseJson.setStatus(HttpStatus.OK);
+	
 	return responseJson;
 	
 }

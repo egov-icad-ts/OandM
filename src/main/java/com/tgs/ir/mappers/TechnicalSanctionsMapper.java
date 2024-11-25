@@ -8,6 +8,7 @@ import com.tgs.ir.core.BaseMapperImpl;
 import com.tgs.ir.dto.TechnicalSanctionsModel;
 
 import com.tgs.ir.entities.TechnicalSanctionEntity;
+import com.tgs.ir.user.UserEntity;
 
 @Component
 public class TechnicalSanctionsMapper extends BaseMapperImpl<TechnicalSanctionEntity, TechnicalSanctionsModel> {
@@ -23,7 +24,9 @@ public class TechnicalSanctionsMapper extends BaseMapperImpl<TechnicalSanctionEn
 	@Override
 	public TechnicalSanctionEntity mapModelToEntity(TechnicalSanctionsModel model) {
 		// TODO Auto-generated method stub
-		return null;
+		TechnicalSanctionEntity entity = new TechnicalSanctionEntity();
+		BeanUtils.copyProperties(model, entity);
+		return entity;
 	}
 
 }

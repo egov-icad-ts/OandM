@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.tgs.ir.core.BaseMapperImpl;
 import com.tgs.ir.dto.AdminSanctionsModel;
 import com.tgs.ir.entities.AdminSanctionsEntity;
+import com.tgs.ir.entities.TechnicalSanctionEntity;
 
 @Component
 public class AdminSanctionMapper extends BaseMapperImpl<AdminSanctionsEntity, AdminSanctionsModel>{
@@ -22,7 +23,9 @@ public class AdminSanctionMapper extends BaseMapperImpl<AdminSanctionsEntity, Ad
 	@Override
 	public AdminSanctionsEntity mapModelToEntity(AdminSanctionsModel model) {
 		// TODO Auto-generated method stub
-		return null;
+		AdminSanctionsEntity entity = new AdminSanctionsEntity();
+		BeanUtils.copyProperties(model, entity);
+		return entity;
 	}
 
 }
