@@ -1,12 +1,17 @@
 package com.tgs.ir.entities;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -16,7 +21,11 @@ import lombok.Data;
 public class TechnicalSanctionEntity {
 	
 	
-@Id
+@Id  
+
+
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "technical_sanction_seq")
+@SequenceGenerator(name = "technical_sanction_seq", sequenceName = "o_m_technical_sanction_ts_id_seq", allocationSize = 1)
 @Column(name="ts_id")
  
  private Integer  tsId;
@@ -60,10 +69,13 @@ public class TechnicalSanctionEntity {
 @Column(name="ts_type")
  
  private Integer  tsType;
+
+@Column(name="work_id")
+private Integer workId ;
 	
-	  @ManyToOne
-	  @JoinColumn(name = "work_id", referencedColumnName = "work_id", nullable =
-	  false) private AdminSanctionsEntity adminSanction;
+//	  @ManyToOne
+//	  @JoinColumn(name = "work_id", referencedColumnName = "work_id")
+//	  private AdminSanctionsEntity adminSanction;
 	 
 	 
 	

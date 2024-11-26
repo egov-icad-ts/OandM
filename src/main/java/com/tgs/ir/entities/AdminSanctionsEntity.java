@@ -11,7 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -134,7 +134,12 @@ public class AdminSanctionsEntity {
 	private Integer projSubTypeId ;
 	
 	
-	  @OneToMany(mappedBy = "adminSanction", fetch = FetchType.LAZY)
+//	  @OneToMany(mappedBy = "adminSanction", fetch = FetchType.LAZY)
+//	  private List<TechnicalSanctionEntity> technEntries;
+//	  
+		
+	  @OneToMany	 
+	  @JoinColumn(name = "work_id", referencedColumnName = "work_id")
 	  private List<TechnicalSanctionEntity> technEntries;
 	  
 		/*

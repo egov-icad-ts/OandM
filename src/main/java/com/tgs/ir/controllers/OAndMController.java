@@ -3,6 +3,7 @@ package com.tgs.ir.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -28,6 +29,7 @@ import com.tgs.ir.dto.AdminSanctionsModel;
 import com.tgs.ir.dto.TechnicalSanctionsModel;
 import com.tgs.ir.services.AdminSanctionService;
 import com.tgs.ir.services.TechnicalSanctionService;
+import com.tgs.ir.utils.DateUtil;
 
 @RestController
 @RequestMapping("/OandMWorks")
@@ -92,8 +94,7 @@ public class OAndMController {
 			  if(techlist!=null) {
 					for(int i=0;i<tsList.size();i++) {
 //						tsList.get(i).setUpdatedByUserName(uname);
-//						tsList.get(i).setWorkId(workId);
-//						tsList.get(i).setTechSanc(techSanc);//TechSanc=1 (Multiple Ts) & techSanc = 2 (Single TS)
+
 						tsFile = tsList.get(i).getTechSancUrl();
 						tsEstimateFile = tsList.get(i).getTechEstimateUrl();
 						if (null != tsFile && tsFile.getSize() > 0) {
@@ -146,6 +147,18 @@ public class OAndMController {
 							tsList.get(i).setTsEstFileUrl("O&MWorks"+ File.separator + "TechSanctionFiles"+  File.separator + saveFileName);
 							tsEstValidFile = temps[temps.length - 1];
 							tsList.get(i).setEstFileType(tsEstValidFile);
+						}
+						java.sql.Date sqlDate=null;
+						if(tsList.get(i).getTsDate()!=null) {
+							try {
+								sqlDate=DateUtil.getSQLDate1(tsList.get(i).getTsDate());
+								if(sqlDate!=null) {
+									tsList.get(i).setTsApprovedDate(sqlDate);
+								}
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 				}
