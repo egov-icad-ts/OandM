@@ -74,9 +74,9 @@ public class AgreementsEntity {
  
  private String  updatedBy;
 
-@Column(name="tech_id", insertable=false, updatable=false)
- 
- private Integer  techId;
+//@Column(name="tech_id")
+// 
+// private Integer  techId;
 
 @Column(name="tender_date")
  
@@ -84,6 +84,11 @@ public class AgreementsEntity {
 
 @Column(name = "updated_on", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 private LocalDateTime updatedOn;
+
+@ManyToOne
+@JoinColumn(name = "tech_id", referencedColumnName = "ts_id")  // "parent_id" is the FK column in the child table
+private TechnicalSanctionEntity technicalSanctionEntity;
+
 
 
 @PrePersist
@@ -93,10 +98,6 @@ public void prePersist() {
     this.isLatest = true; 
     this.deleteFlag = false; 
 }
-
-@ManyToOne
-@JoinColumn(name = "tech_id", referencedColumnName = "ts_id", nullable =false, insertable=false,updatable = false) 
-private TechnicalSanctionEntity techSanction;
 
 
 

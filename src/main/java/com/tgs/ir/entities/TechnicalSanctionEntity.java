@@ -6,6 +6,10 @@ import java.util.List;
 
 
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +26,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "o_m_technical_sanction")
+//@FilterDef(name = "activeFilter", parameters = @ParamDef(name = "is_latest", type = Boolean.class))
+//@Filter(name = "activeFilter", condition = "is_active = " +true)
 public class TechnicalSanctionEntity {
 	
 	
@@ -83,7 +89,6 @@ private Integer workId ;
 	 
 	 
 		@OneToMany
-		@JoinColumn(name = "tech_id", referencedColumnName = "ts_id", nullable =false) 
 		private List<AgreementsEntity> agreements;
 	
 
