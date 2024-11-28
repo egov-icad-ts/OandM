@@ -17,9 +17,11 @@ public class TechnicalSanctionsModel {
 	 private Integer  tsId;
 	 private String  tsNumber;
 	 private Double  tsApprovedAmount;
-	 private Date  tsApprovedDate;
+	 private Date  techSancDate;
+	 private java.sql.Date tsApprovedDate = null;
 	 private boolean  isLatest;
 	 private boolean  deleteFlag;
+	 
 	 
 	 private String tsDate;
 
@@ -31,6 +33,9 @@ public class TechnicalSanctionsModel {
 
 private String sancFileType;
 private String estFileType;
+
+private Integer  tsType;
+private Integer workId ;
 
 private List<TechnicalSanctionsModel> techList=new ArrayList<>();
 

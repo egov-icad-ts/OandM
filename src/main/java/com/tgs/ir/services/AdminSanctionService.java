@@ -51,7 +51,7 @@ public class AdminSanctionService extends BaseServiceImpl<AdminSanctionsEntity, 
 public BaseResponse<HttpStatus, AdminSanctionsModel> findbyWorkId(Integer workId){
 		logger.debug(appConstant.getValue(AppConstant.GET_SERVICE_STARTED));
 		BaseResponse<HttpStatus, AdminSanctionsModel> responseJson = new BaseResponse<>();
-		AdminSanctionsEntity entities = adminSanctionRepo.findByworkIdAndIsLatestTrueAndDeleteFlagFalseAndTechnEntriesIsLatestTrueAndTechnEntriesDeleteFlagFalse(workId) ;
+		AdminSanctionsEntity entities = adminSanctionRepo.findByworkIdAndIsLatestAndDeleteFlagAndTechnEntriesIsLatestAndTechnEntriesDeleteFlag(workId,true,false,true,false) ;
 			AdminSanctionsModel model=new AdminSanctionsModel();
 			model.setWorkId(entities.getWorkId());
 			model.setAdminSanctionAmt(entities.getAdminSanctionAmt());
