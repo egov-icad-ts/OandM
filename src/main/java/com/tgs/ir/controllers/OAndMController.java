@@ -25,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tgs.ir.core.BaseResponse;
 import com.tgs.ir.dto.AdminAssignWorksModel;
 import com.tgs.ir.dto.AdminSanctionsModel;
+import com.tgs.ir.dto.AgreementsModel;
 import com.tgs.ir.dto.TechnicalSanctionsModel;
 import com.tgs.ir.services.AdminSanctionService;
+import com.tgs.ir.services.AgreementsService;
 import com.tgs.ir.services.TechnicalSanctionService;
 
 @RestController
@@ -38,6 +40,9 @@ public class OAndMController {
 
 	@Autowired
 	TechnicalSanctionService technicalSanctionService;
+	
+	@Autowired
+	AgreementsService agreementsService;
 
 	@GetMapping("/adminSanctions")
 	public ResponseEntity<BaseResponse<HttpStatus, List<AdminSanctionsModel>>> getAdminSanctions(Integer unit,
@@ -77,6 +82,20 @@ public class OAndMController {
 
 		return new ResponseEntity<>(response, response.getStatus());
 	}
+	
+	 @CrossOrigin(origins = "http://localhost:3000")
+	 @GetMapping("/technicalSanctionsByworkId")
+	    public ResponseEntity<BaseResponse<HttpStatus,  List<TechnicalSanctionsModel>>> getTechSanctionsByworkId(Integer workId) {
+	        BaseResponse<HttpStatus, List<TechnicalSanctionsModel>> response = technicalSanctionService.getTechnicalSanctionByWorkId(workId);
+	        return new ResponseEntity<>(response, response.getStatus());
+	    }
+	 
+	/* @CrossOrigin(origins = "http://localhost:3000")
+	 @GetMapping("/workCalledType")
+	 public ResponseEntity<BaseResponse<HttpStatus,  List<TechnicalSanctionsModel>>> getWorkCalledType(){
+		 BaseResponse<HttpStatus, List<TechnicalSanctionsModel>> response = technicalSanctionService.getWorkCalledType();
+	        return new ResponseEntity<>(response, response.getStatus());
+	 }*/
 
 	@CrossOrigin(origins = "http://localhost:3000")
 		@PostMapping(value="/submitTechnicalSanctions",  consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -158,4 +177,14 @@ public class OAndMController {
 		return ResponseEntity.ok("File uploaded: " + file.getOriginalFilename());
 	}
 
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping(value="/submitAgreements")
+
+	public void submitAgreements(@RequestBody AgreementsModel agreements){
+		 
+			agreementsService.insertAgreements(agreements);
+			
+
+}
 }

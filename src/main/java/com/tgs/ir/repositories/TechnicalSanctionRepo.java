@@ -17,5 +17,6 @@ public interface TechnicalSanctionRepo   extends  BaseRepository<TechnicalSancti
 	 */
 	
 	/* public void saveAll(List<TechnicalSanctionsModel> techlist); */
+	public List<TechnicalSanctionEntity> findByworkIdAndIsLatestTrueAndDeleteFlagFalse(Integer workId);
 
 }
